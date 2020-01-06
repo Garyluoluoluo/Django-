@@ -43,7 +43,7 @@ apps/home/models.py
 
 数据迁移
 
-```
+```shell
 python manage.py makemigrations
 python manage.py migrate
 ```
@@ -114,3 +114,6 @@ api/urls.py 增加路由
 ```
 
 ### 安装插件xadmin
+
+
+
