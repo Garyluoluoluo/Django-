@@ -39,6 +39,16 @@ git branch
 
 apps/home/models.py
 
+```python
+class BaseModel(models.Model):
+	"""公共模型"""
+	...
+	...
+	class Meta:
+		#抽象模型，设置abstract为True时，Django不会创建数据库表
+		abstract=True
+```
+
 创建模型文件类
 
 数据迁移
@@ -101,7 +111,7 @@ apps/urls.py 增加
 
 ```python
 urlpattners =[
-	path("banner/",views.)
+	path("banner/",views.BannerListView.as_view())
 ]
 ```
 
@@ -114,3 +124,39 @@ api/urls.py 增加路由
 ```
 
 ### 安装插件xadmin
+
+
+
+
+
+## 用户登录模型
+
+​	权限机制：
+
+​					1.Role-base-access[基于角色的权限认证] RBAC
+
+​					2.Auth[授权认证机制]
+
+​	Django 内部集成了Auth模块。
+
+​	RBAC权限机制，一般有2种不同的设计方式
+
+​	3表RBAC
+
+​		用户【user】：id/ username / role_id
+
+​       角色【role】：id / role_name/auth_list
+
+​		权限【Auth】：id/ auth_name/
+
+​	5表RBAC
+
+​				用户【user】：id/ username/
+
+​       		角色【role】：id / role_name
+
+​				权限【Auth】：id/ auth_name
+
+​				用户角色关系表：id/uid/rid
+
+​				角色权限关系表：id/rid/aid
